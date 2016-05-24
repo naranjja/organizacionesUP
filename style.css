@@ -1,0 +1,96 @@
+* {
+	font-family: "Segoe UI";
+}
+
+header {
+	background-color: #0066B2;	
+	font-size: 1.3em;
+	color: white;
+	text-align: center;
+	padding: 0.5em;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	
+}
+
+body {
+	background-color: #282E3A;
+}
+
+p, ul, li, div, nav {
+    padding: 0;
+    margin: 0;
+}
+
+#menu {
+    overflow: auto;
+    position: relative;
+    font-size: 1.1em;
+}
+
+#menu ul li a {
+    padding: 11px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+#menu ul li a:hover {
+    background-color: #007ee9;
+}
+
+#sidebar {
+    position: absolute;
+    width: 250px;
+    top: 3.53em;
+    right: 0;
+    bottom: 0;
+    left: 0.5em;
+    background-color: #0c8fff;
+}
+
+#logo_up {
+	padding: 10px 15px;
+	position: absolute;
+	bottom: 0;
+	width: 220px;
+	text-align: center;	
+}
+
+#content {
+	margin-top: 8px;
+	margin-left: 258px;
+	margin-right: 0px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 10px;
+	color: #464646;
+	width: 1268px;
+}
+
+#separator {
+	background-color: #0066B2;
+	height: 1px;
+}
+
+#menu ul li a.current {
+	background-color: #33a7ff;
+}
+
+.icon {
+	height: 20px;
+	vertical-align: text-bottom;
+}
+
+#facebook {
+	position: absolute;
+    width: 350px;
+    top: 3.53em;
+    right: 0;
+    margin-right: 8px;
+    overflow: hidden;
+}
+
+#facebook > iframe {
+     margin: -1px 0px 0px -1px;  
+}
