@@ -32,7 +32,6 @@
     var latitude = '';
     var longitude = '';
     var accuracy = '';
-    var screenSize = '';
     var browser = '';
     var browserVersion = '';
     var majorVersion = '';
@@ -40,8 +39,10 @@
     var os = '';
     var osVersion = '';
     var cookieEnabled = '';
-    var windowSize = '';
+    var currentPage = '';
     var timestamp = '';
+    var screenSize = '';
+    var windowSize = '';
     
     (function (window) {{
         
@@ -194,6 +195,9 @@
     // get windowSize
     windowSize = window.innerWidth + ' x ' + window.innerHeight;
 
+    // get currentPage
+    currentPage = window.location.href;
+
     // get timestamp
     var now = new Date();
     
@@ -209,10 +213,8 @@
             time[i] = "0" + time[i];
         }
     }
-  
-    timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
 
-    //// TODO: if user is sharing location, then do this POST...
+    timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
 
     // get latitude, longitude and accuracy
     navigator.geolocation.getCurrentPosition(function(location) {
@@ -221,29 +223,39 @@
         longitude = location.coords.longitude;
         accuracy = location.coords.accuracy;
 
-        $.post("saveData.php", {
+        $.post("saveLocation.php", {
+            externalIP:externalIP,
             latitude:latitude,
             longitude:longitude,
             accuracy:accuracy,
-            externalIP:externalIP,
-            os:os,
             browser:browser,
+            browserVersion:browserVersion,
+            majorVersion:majorVersion,
             mobile:mobile,
+            os:os,
+            osVersion:osVersion,
             cookieEnabled:cookieEnabled,
-            timestamp:timestamp
+            currentPage:currentPage,
+            timestamp:timestamp,
+            screenSize:screenSize,
+            windowSize:windowSize
         });
 
     });
 
-    //// TODO: else, do this POST...
-
     $.post("saveData.php", {
             externalIP:externalIP,
-            os:os,
             browser:browser,
+            browserVersion:browserVersion,
+            majorVersion:majorVersion,
             mobile:mobile,
+            os:os,
+            osVersion:osVersion,
             cookieEnabled:cookieEnabled,
-            timestamp:timestamp
+            currentPage:currentPage,
+            timestamp:timestamp,
+            screenSize:screenSize,
+            windowSize:windowSize
     });
 
 </script>

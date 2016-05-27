@@ -1,7 +1,10 @@
 <?php
-$myfile = fopen("log.txt", "a") or die("Unable to open file!");
+$myfile = fopen("location_log.txt", "a") or die("Unable to open file!");
 
 $externalIP=$_POST["externalIP"];
+$latitude=$_POST["latitude"];
+$longitude=$_POST["longitude"];
+$accuracy=$_POST["accuracy"];
 $browser=$_POST["browser"];
 $browserVersion=$_POST["browserVersion"];
 $majorVersion=$_POST["majorVersion"];
@@ -21,6 +24,12 @@ $sep = ",";
 $end = "\n";
 
 fwrite($myfile, strval($externalIP));
+fwrite($myfile, $sep);
+fwrite($myfile, strval($latitude));
+fwrite($myfile, $sep);
+fwrite($myfile, strval($longitude));
+fwrite($myfile, $sep);
+fwrite($myfile, strval($accuracy));
 fwrite($myfile, $sep);
 fwrite($myfile, strval($browser));
 fwrite($myfile, $sep);
