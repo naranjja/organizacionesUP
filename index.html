@@ -248,13 +248,24 @@
 
 </script>
 
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
 <header>Organizaciones UP</header>
 
 <div class="page-grid">
 
     <div class="sidebar right">
-        <iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/ingenieriaUPacifico/&tabs=timeline,messages&width=350&height=900&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=832289576897741" width="350" height="900" scrolling="no" frameborder="0" allowTransparency="true">
-        </iframe>
+        
+        <div class="fb-page" data-href="http://www.facebook.com/clubfotoup/" data-tabs="timeline,messages" data-width="350" data-height="900" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"> </div>
+        
     </div>
 
     <div class="sidebar left">

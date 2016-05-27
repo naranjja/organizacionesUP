@@ -65,14 +65,10 @@ header {
   margin-right: -2px;
 }
 
-.sidebar.right > iframe {
-     margin: -1px 0px 0px -1px;  
-}
-
 #content {
   margin-top: 8px;
   margin-left: 258px;
-  margin-right: 350px;
+  margin-right: 358px;
   padding: 10px;
   border-radius: 8px;
   background-color: white;
