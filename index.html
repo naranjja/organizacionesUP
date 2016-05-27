@@ -8,10 +8,10 @@
 </head>
 <body>
 
-<!-- Cargar jQuery -->
+<!-- jQuery loading -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
-<!-- Hacer que el boton del nav concuerde con la pagina actual -->
+<!-- current page class formatting -->
 <script>
 	$(function() {
 	  $('a').each(function() {
@@ -22,127 +22,115 @@
 	});
 </script>
 
-<!-- Conseguir el IP externo -->
+<!-- get external IP -->
 <script src="http://l2.io/ip.js?var=externalIP"></script>
 
-<!-- Mostrar el IP externo en consola -->
-<script>console.log("IP: " + externalIP)</script>
-
-<!-- Conseguir latitud, longitud y precision -->
+<!-- data collection scripts -->
 <script>
-	navigator.geolocation.getCurrentPosition(function(location) {
 
-        var lat = location.coords.latitude;
-        var longi = location.coords.longitude;
-        var accur = location.coords.accuracy;
-		console.log("Latitude: " + location.coords.latitude);
-		console.log("Longitude: " + location.coords.longitude);
-		console.log("Accuracy: " + location.coords.accuracy);
-	});
-
-////////////
-
-        $.post("prueba.php",
-        {
-                latitude:lat,
-                longitude:longi,
-                accuracy:accur
-        },
-        function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
-        });
-
-    });
-
-</script>
-
-<!-- Conseguir screenSize, browser, mobile, os, cookieEnabled -->
-<script>
+    // global variables
+	var latitude = '';
+    var longitude = '';
+    var accuracy = '';
+    var screenSize = '';
+	var browser = '';
+	var browserVersion = '';
+	var majorVersion = '';
+	var mobile = '';
+	var os = '';
+	var osVersion = '';
+	var cookieEnabled = '';
+	var windowSize = '';
+	var timestamp = '';
+	
 	(function (window) {{
-        var unknown = '-';
-        var screenSize = '';
-
+        
+        // get screen size
         if (screen.width) {
-            width = (screen.width) ? screen.width : '';
-            height = (screen.height) ? screen.height : '';
+            var width = (screen.width) ? screen.width : '';
+            var height = (screen.height) ? screen.height : '';
             screenSize += '' + width + " x " + height;
         }
 
+        // get browser, browserVersion and majorVersion
         var nVer = navigator.appVersion;
         var nAgt = navigator.userAgent;
-        var browser = navigator.appName;
-        var version = '' + parseFloat(navigator.appVersion);
-        var majorVersion = parseInt(navigator.appVersion, 10);
+        browser = navigator.appName;
+        browserVersion = '' + parseFloat(navigator.appVersion);
+        majorVersion = parseInt(navigator.appVersion, 10);
         var nameOffset, verOffset, ix;
 
         if ((verOffset = nAgt.indexOf('Opera')) != -1) {
             browser = 'Opera';
-            version = nAgt.substring(verOffset + 6);
+            browserVersion = nAgt.substring(verOffset + 6);
             if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                version = nAgt.substring(verOffset + 8);
+                browserVersion = nAgt.substring(verOffset + 8);
             }
         }
 
         if ((verOffset = nAgt.indexOf('OPR')) != -1) {
             browser = 'Opera';
-            version = nAgt.substring(verOffset + 4);
+            browserVersion = nAgt.substring(verOffset + 4);
         }
 
         else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
             browser = 'Microsoft Internet Explorer';
-            version = nAgt.substring(verOffset + 5);
+            browserVersion = nAgt.substring(verOffset + 5);
         }
 
         else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
             browser = 'Chrome';
-            version = nAgt.substring(verOffset + 7);
+            browserVersion = nAgt.substring(verOffset + 7);
         }
 
         else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
             browser = 'Safari';
-            version = nAgt.substring(verOffset + 7);
+            browserVersion = nAgt.substring(verOffset + 7);
             if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                version = nAgt.substring(verOffset + 8);
+                browserVersion = nAgt.substring(verOffset + 8);
             }
         }
 
         else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
             browser = 'Firefox';
-            version = nAgt.substring(verOffset + 8);
+            browserVersion = nAgt.substring(verOffset + 8);
         }
 
         else if (nAgt.indexOf('Trident/') != -1) {
             browser = 'Microsoft Internet Explorer';
-            version = nAgt.substring(nAgt.indexOf('rv:') + 3);
+            browserVersion = nAgt.substring(nAgt.indexOf('rv:') + 3);
         }
 
         else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
             browser = nAgt.substring(nameOffset, verOffset);
-            version = nAgt.substring(verOffset + 1);
+            browserVersion = nAgt.substring(verOffset + 1);
             if (browser.toLowerCase() == browser.toUpperCase()) {
                 browser = navigator.appName;
             }
         }
 
-        if ((ix = version.indexOf(';')) != -1) version = version.substring(0, ix);
-        if ((ix = version.indexOf(' ')) != -1) version = version.substring(0, ix);
-        if ((ix = version.indexOf(')')) != -1) version = version.substring(0, ix);
+        if ((ix = browserVersion.indexOf(';')) != -1) browserVersion = browserVersion.substring(0, ix);
+        if ((ix = browserVersion.indexOf(' ')) != -1) browserVersion = browserVersion.substring(0, ix);
+        if ((ix = browserVersion.indexOf(')')) != -1) browserVersion = browserVersion.substring(0, ix);
 
-        majorVersion = parseInt('' + version, 10);
+        majorVersion = parseInt('' + browserVersion, 10);
         if (isNaN(majorVersion)) {
-            version = '' + parseFloat(navigator.appVersion);
+            browserVersion = '' + parseFloat(navigator.appVersion);
             majorVersion = parseInt(navigator.appVersion, 10);
         }
 
-        var mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
-        var cookieEnabled = (navigator.cookieEnabled) ? true : false;
+        // get mobile
+        mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
+
+        // get cookieEnabled
+        cookieEnabled = (navigator.cookieEnabled) ? true : false;
 
         if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
             document.cookie = 'testcookie';
             cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
         }
 
-        var os = unknown;
+        // get os and osVersion
         var clientStrings = [
             {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
             {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
@@ -180,8 +168,6 @@
             }
         }
 
-        var osVersion = unknown;
-
         if (/Windows/.test(os)) {
             osVersion = /Windows (.*)/.exec(os)[1];
             os = 'Windows';
@@ -203,113 +189,86 @@
         }
     }
 
-    window.jscd = {
-        screen: screenSize,
-        browser: browser,
-        browserVersion: version,
-        browserMajorVersion: majorVersion,
-        mobile: mobile,
-        os: os,
-        osVersion: osVersion,
-        cookies: cookieEnabled,
-    };
-
 	}(this));
 
-	console.log('OS: ' + jscd.os +' '+ jscd.osVersion)
-	console.log('Browser: ' + jscd.browser +' '+ jscd.browserMajorVersion + ' (' + jscd.browserVersion + ')')
-	console.log('Mobile: ' + jscd.mobile)
-	console.log('Cookies: ' + jscd.cookies)
-	console.log('Screen Size: ' + jscd.screen)
-</script>
+    // get windowSize
+    windowSize = window.innerWidth + ' x ' + window.innerHeight;
 
-<!-- Conseguir window size -->
-<script>
-	var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-	console.log('Window Size: ' + width + ' x ' + height);
-</script>
+    // get timestamp
+    var now = new Date();
+    
+    var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
+    var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+    var suffix = ( time[0] < 12 ) ? "AM" : "PM";
+    
+    time[0] = ( time[0] < 12 ) ? time[0] : time[0] - 12;
+    time[0] = time[0] || 12;
 
-<!-- Conseguir timestamp -->
-<script>
-  var now = new Date();
-  var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
-  var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
-  var suffix = ( time[0] < 12 ) ? "AM" : "PM";
-  time[0] = ( time[0] < 12 ) ? time[0] : time[0] - 12;
-  time[0] = time[0] || 12;
-
-  for ( var i = 1; i < 3; i++ ) {
-    if ( time[i] < 10 ) {
-      time[i] = "0" + time[i];
+    for ( var i = 1; i < 3; i++ ) {
+        if ( time[i] < 10 ) {
+            time[i] = "0" + time[i];
+        }
     }
-  }
-  var timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
-  console.log('Timestamp: ' + timestamp);
-</script>
+  
+    timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
 
-<script>
+    //// TODO: if user is sharing location, then do this POST...
 
+    // get latitude, longitude and accuracy
+    navigator.geolocation.getCurrentPosition(function(location) {
+        latitude = location.coords.latitude;
+        longitude = location.coords.longitude;
+        accuracy = location.coords.accuracy;
 
+        console.log("Latitude: " + latitude);
+        console.log("Longitude: " + longitude);
+        console.log("Accuracy: " + accuracy);
 
-///////////////
+        $.post("saveData.php", {
+            latitude:latitude,
+            longitude:longitude,
+            accuracy:accuracy,
+            externalIP:externalIP,
+            os:os,
+            browser:browser,
+            mobile:mobile,
+            cookieEnabled:cookieEnabled,
+            timestamp:timestamp
+        });
 
+    });
 
+    //// TODO: else, do this POST...
 
-$.post("prueba.php",
-{
-        ip:externalIP,
-},
-function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-});
-
-</script>
-
-
-<script>
-    var os = jscd.op + ' ' + jscd.osVersion;
-    //alert("sistema operativo" + os);
-    var buscador = jscd.browser + ' ' + jscd.browserMajorVersion + ' (' + jscd.browserVersion + ')';
-    //alert("buscador"+buscador);
-    var mobile=jscd.mobile;
-    //alert("mobil" + mobile);
-    var cookie = jscd.cookies;
-    //alert("cookie"+cookie);
-    //var tamano=jscd.Screen;
-    //var tamano_screen = width + 'x' + height;
-    //alert("tamano"+tamano_screen);
-    var tiempo = timestamp;
-    //alert("tiempo"+tiempo);
-
-    $.post("prueba.php",
-    {
-            sistemaOperativo:os,
-            navegador:buscador,
-            mobil:mobile,
-            galleta:cookie,
-            fecha:tiempo
-    },
-    function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
+    $.post("saveData.php", {
+            externalIP:externalIP,
+            os:os,
+            browser:browser,
+            mobile:mobile,
+            cookieEnabled:cookieEnabled,
+            timestamp:timestamp
     });
 
 </script>
 
 <header>Organizaciones UP</header>
 
-<div id="sidebar">
+<div class="page-grid">
+
+    <div class="sidebar right">
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/ingenieriaUPacifico/&tabs=timeline,messages&width=350&height=900&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=832289576897741" width="350" height="900" scrolling="no" frameborder="0" allowTransparency="true">
+		</iframe>
+    </div>
+
+    <div class="sidebar left">
+    <ul>
 	
-	<nav id="menu">
-
-		<ul>
-
 		<li><a href="index.html">
 		<img class="icon" src="images/home.png">
 		Inicio
 		</a></li>
 
-		<div id="separator"></div>
+		<div class="separator"></div>
 
 		<li><a href="accion.html">
 		Acción Universitaria
@@ -356,69 +315,44 @@ function(data, status){
 		Voz Actual
 		</a></li>
 
-		</ul>
+	</ul>
+    </div>
 
-	</nav>
+    <div id="content">
+    	
+		<p>Aquí puedes encontrar información acerca de las organizaciones estudiantiles de la Universidad del Pacífico.</p>
 
-	<img id="logo_up" src="images/up.png" height="80">
+		</br>
 
+		<p><b>Descripción</b></p>
+		<p>La descripción general de cada organización.</p>
+		</br>
+
+		<p><b>Contacto</b></p>
+		<p>Correos electrónicos, página web, página de Facebook y teléfonos de contacto.</p>
+		</br>
+
+		<p><b>Inscripciones</b></p>
+		<p>Información acerca de las inscripciones y formulario en línea.</p>
+		</br>
+
+		<p><b>Eventos</b></p>
+		<p>Información acerca de los eventos por realizarse.</p>
+		</br>
+
+		<p><b>Miembros</b></p>
+		<p>Información acerca de los miembros de las organizaciones y los organigramas.</p>
+		</br>
+
+		<p><b>Historia</b></p>
+		<p>Información acerca de la creación de las organizaciones y su estado actual.</p>
+		</br>
+
+		<p><b>Redes sociales</b></p>
+		<p>Información acerca de la presencia de las organizaciones en las redes sociales y las nuevas publicaciones.</p>
+
+    </div>
+  
 </div>
-
-<div id="content">
-
-<p>Aquí puedes encontrar información acerca de las organizaciones estudiantiles de la Universidad del Pacífico.</p>
-
-</br>
-
-<p><b>Descripción</b></p>
-<p>La descripción general de cada organización.</p>
-</br>
-
-<p><b>Contacto</b></p>
-<p>Correos electrónicos, página web, página de Facebook y teléfonos de contacto.</p>
-</br>
-
-<p><b>Inscripciones</b></p>
-<p>Información acerca de las inscripciones y formulario en línea.</p>
-</br>
-
-<p><b>Eventos</b></p>
-<p>Información acerca de los eventos por realizarse.</p>
-</br>
-
-<p><b>Miembros</b></p>
-<p>Información acerca de los miembros de las organizaciones y los organigramas.</p>
-</br>
-
-<p><b>Historia</b></p>
-<p>Información acerca de la creación de las organizaciones y su estado actual.</p>
-</br>
-
-<p><b>Redes sociales</b></p>
-<p>Información acerca de la presencia de las organizaciones en las redes sociales y las nuevas publicaciones.</p>
-
-</div>
-
-<div id="facebook">
-<iframe 
-	src="https://www.facebook.com/plugins/page.php
-	?href=https://www.facebook.com/ingenieriaUPacifico/
-	&tabs=timeline,messages
-	&width=350
-	&height=900
-	&small_header=true
-	&adapt_container_width=true
-	&hide_cover=false
-	&show_facepile=true
-	&appId=832289576897741" 
-	width="350" 
-	height="900" 
-	scrolling="no" 
-	frameborder="0" 
-	allowTransparency="true">
-</iframe>
-
-</div>
-
 </body>
 </html>
