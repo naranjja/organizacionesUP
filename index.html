@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="icon" href="favicon.png">
-	<meta charset="UTF-8">
-	<title>Organizaciones UP</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="favicon.png">
+    <meta charset="UTF-8">
+    <title>Organizaciones UP</title>
 </head>
 <body>
 
@@ -13,13 +13,13 @@
 
 <!-- current page class formatting -->
 <script>
-	$(function() {
-	  $('a').each(function() {
-	    if ($(this).prop('href') == window.location.href) {
-	      $(this).addClass('current');
-	    }
-	  });
-	});
+    $(function() {
+      $('a').each(function() {
+        if ($(this).prop('href') == window.location.href) {
+          $(this).addClass('current');
+        }
+      });
+    });
 </script>
 
 <!-- get external IP -->
@@ -29,21 +29,21 @@
 <script>
 
     // global variables
-	var latitude = '';
-	var longitude = '';
-	var accuracy = '';
-	var screenSize = '';
-	var browser = '';
-	var browserVersion = '';
-	var majorVersion = '';
-	var mobile = '';
-	var os = '';
-	var osVersion = '';
-	var cookieEnabled = '';
-	var windowSize = '';
-	var timestamp = '';
-	
-	(function (window) {{
+    var latitude = '';
+    var longitude = '';
+    var accuracy = '';
+    var screenSize = '';
+    var browser = '';
+    var browserVersion = '';
+    var majorVersion = '';
+    var mobile = '';
+    var os = '';
+    var osVersion = '';
+    var cookieEnabled = '';
+    var windowSize = '';
+    var timestamp = '';
+    
+    (function (window) {{
         
         // get screen size
         if (screen.width) {
@@ -189,7 +189,7 @@
         }
     }
 
-	}(this));
+    }(this));
 
     // get windowSize
     windowSize = window.innerWidth + ' x ' + window.innerHeight;
@@ -216,13 +216,10 @@
 
     // get latitude, longitude and accuracy
     navigator.geolocation.getCurrentPosition(function(location) {
+        
         latitude = location.coords.latitude;
         longitude = location.coords.longitude;
         accuracy = location.coords.accuracy;
-
-        console.log("Latitude: " + latitude);
-        console.log("Longitude: " + longitude);
-        console.log("Accuracy: " + accuracy);
 
         $.post("saveData.php", {
             latitude:latitude,
@@ -257,99 +254,99 @@
 
     <div class="sidebar right">
         <iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/ingenieriaUPacifico/&tabs=timeline,messages&width=350&height=900&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=832289576897741" width="350" height="900" scrolling="no" frameborder="0" allowTransparency="true">
-		</iframe>
+        </iframe>
     </div>
 
     <div class="sidebar left">
     <ul>
-	
-		<li><a href="index.html">
-		<img class="icon" src="images/home.png">
-		Inicio
-		</a></li>
+    
+        <li><a href="index.html">
+        <img class="icon" src="images/home.png">
+        Inicio
+        </a></li>
 
-		<div class="separator"></div>
+        <div class="separator"></div>
 
-		<li><a href="accion.html">
-		Acción Universitaria
-		</a></li>
-		
-		<li><a href="boceto.html">
-		Boceto
-		</a></li>
-		
-		<li><a href="brigada.html">
-		Brigada UP
-		</a></li>
+        <li><a href="accion.html">
+        Acción Universitaria
+        </a></li>
+        
+        <li><a href="boceto.html">
+        Boceto
+        </a></li>
+        
+        <li><a href="brigada.html">
+        Brigada UP
+        </a></li>
 
-		<li><a href="ceup.html">
-		CEUP
-		</a></li>
-		
-		<li><a href="cdd.html">
-		Círculo de Debate
-		</a></li>
-		
-		<li><a href="cfup.html">
-		<img class="icon" src="images/cfup.png">
-		Club de Fotografía
-		</a></li>
-		
-		<li><a href="ecai.html">
-		ECAI
-		</a></li>
-		
-		<li><a href="forseti.html">
-		Forseti
-		</a></li>
-		
-		<li><a href="pds.html">
-		Peruvian Debate Society
-		</a></li>
-		
-		<li><a href="reup.html">
-		REUP
-		</a></li>
-		
-		<li><a href="voz.html">
-		Voz Actual
-		</a></li>
+        <li><a href="ceup.html">
+        CEUP
+        </a></li>
+        
+        <li><a href="cdd.html">
+        Círculo de Debate
+        </a></li>
+        
+        <li><a href="cfup.html">
+        <img class="icon" src="images/cfup.png">
+        Club de Fotografía
+        </a></li>
+        
+        <li><a href="ecai.html">
+        ECAI
+        </a></li>
+        
+        <li><a href="forseti.html">
+        Forseti
+        </a></li>
+        
+        <li><a href="pds.html">
+        Peruvian Debate Society
+        </a></li>
+        
+        <li><a href="reup.html">
+        REUP
+        </a></li>
+        
+        <li><a href="voz.html">
+        Voz Actual
+        </a></li>
 
-	</ul>
+    </ul>
     </div>
 
     <div id="content">
-    	
-		<p>Aquí puedes encontrar información acerca de las organizaciones estudiantiles de la Universidad del Pacífico.</p>
+        
+        <p>Aquí puedes encontrar información acerca de las organizaciones estudiantiles de la Universidad del Pacífico.</p>
 
-		</br>
+        </br>
 
-		<p><b>Descripción</b></p>
-		<p>La descripción general de cada organización.</p>
-		</br>
+        <p><b>Descripción</b></p>
+        <p>La descripción general de cada organización.</p>
+        </br>
 
-		<p><b>Contacto</b></p>
-		<p>Correos electrónicos, página web, página de Facebook y teléfonos de contacto.</p>
-		</br>
+        <p><b>Contacto</b></p>
+        <p>Correos electrónicos, página web, página de Facebook y teléfonos de contacto.</p>
+        </br>
 
-		<p><b>Inscripciones</b></p>
-		<p>Información acerca de las inscripciones y formulario en línea.</p>
-		</br>
+        <p><b>Inscripciones</b></p>
+        <p>Información acerca de las inscripciones y formulario en línea.</p>
+        </br>
 
-		<p><b>Eventos</b></p>
-		<p>Información acerca de los eventos por realizarse.</p>
-		</br>
+        <p><b>Eventos</b></p>
+        <p>Información acerca de los eventos por realizarse.</p>
+        </br>
 
-		<p><b>Miembros</b></p>
-		<p>Información acerca de los miembros de las organizaciones y los organigramas.</p>
-		</br>
+        <p><b>Miembros</b></p>
+        <p>Información acerca de los miembros de las organizaciones y los organigramas.</p>
+        </br>
 
-		<p><b>Historia</b></p>
-		<p>Información acerca de la creación de las organizaciones y su estado actual.</p>
-		</br>
+        <p><b>Historia</b></p>
+        <p>Información acerca de la creación de las organizaciones y su estado actual.</p>
+        </br>
 
-		<p><b>Redes sociales</b></p>
-		<p>Información acerca de la presencia de las organizaciones en las redes sociales y las nuevas publicaciones.</p>
+        <p><b>Redes sociales</b></p>
+        <p>Información acerca de la presencia de las organizaciones en las redes sociales y las nuevas publicaciones.</p>
 
     </div>
   
