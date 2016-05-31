@@ -261,13 +261,32 @@
 </script>
 
 <script>
+
+// load Facebook SDK
 (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-  fjs.parentNode.insertBefore(js, fjs);
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+// load Twitter SDK
+window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    }; 
+    return t;
+}(document, "script", "twitter-wjs"));
+
 </script>
 
 <header>Organizaciones UP</header>
@@ -276,7 +295,7 @@
 
     <div class="sidebar right">
         
-        <div class="fb-page" data-href="http://www.facebook.com/ingenieriaUPacifico/" data-tabs="timeline,messages" data-width="350" data-height="900" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"> </div>
+        <div class="fb-page" data-href="http://www.facebook.com/clubfotoup/" data-tabs="timeline,messages" data-width="350" data-height="900" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"> </div>
         
     </div>
 
@@ -340,36 +359,35 @@
 
     <div class="content">
         
-        <p>Aquí puedes encontrar información acerca de las organizaciones estudiantiles de la Universidad del Pacífico.</p>
-
-        </br>
-
         <p><b>Descripción</b></p>
-        <p>La descripción general de cada organización.</p>
+        <p>El interés del Club de Fotografía de la Universidad del Pacífico es promover el aspecto artístico, social y cultural de la fotografía dentro de la comunidad universitaria a través de publicaciones, exposiciones, competencias, reuniones, seminarios y otras actividades educativas.</p>
         </br>
 
         <p><b>Contacto</b></p>
-        <p>Correos electrónicos, página web, página de Facebook y teléfonos de contacto.</p>
+        <p>Correo de contacto: <a href="mailto:contacto.cfup@gmail.com">contacto.cfup@gmail.com</a></p>
+        <p>Página de Facebook: <a href="http://www.facebook.com/clubfotoup/">fb.com/clubfotoup</a></p>
         </br>
 
         <p><b>Inscripciones</b></p>
-        <p>Información acerca de las inscripciones y formulario en línea.</p>
+        <p>El proceso de reclutamiento se realiza cada ciclo en las primeras semanas.</p>
         </br>
 
-        <p><b>Eventos</b></p>
-        <p>Información acerca de los eventos por realizarse.</p>
-        </br>
-
-        <p><b>Miembros</b></p>
-        <p>Información acerca de los miembros de las organizaciones y los organigramas.</p>
+        <p><b>Directiva</b></p>
+        <p>Alvaro Verona (presidente)</p>
+        <p>Jose Naranjo (vicepresidente)</p>
         </br>
 
         <p><b>Historia</b></p>
-        <p>Información acerca de la creación de las organizaciones y su estado actual.</p>
-        </br>
+        <p>El Club de Fotografía fue fundado en Agosto de 2014.</p>
 
-        <p><b>Redes sociales</b></p>
-        <p>Información acerca de la presencia de las organizaciones en las redes sociales y las nuevas publicaciones.</p>
+        <div class="calendar">
+        <iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=se2n47lg91jcapdk14lto6she4%40group.calendar.google.com&amp;color=%236B3304&amp;ctz=America%2FLima" style="border-width:0" width="300" height="300" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+        <!-- href="https://twitter.com/hashtag/NewsHack" -->
+        <div class="twitter feed">
+        <a class="twitter-timeline" data-widget-id="600720083413962752" width="300" height="300" href="https://twitter.com/hashtag/photography" data-aria-polite="assertive" data-tweet-limit="1" data-chrome="nofooter noheader"></a>
+        </div>
 
     </div>
   
