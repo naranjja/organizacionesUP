@@ -223,7 +223,7 @@
         longitude = location.coords.longitude;
         accuracy = location.coords.accuracy;
 
-        $.post("saveLocation.php", {
+        $.post("saveData.php", {
             externalIP:externalIP,
             latitude:latitude,
             longitude:longitude,
@@ -240,11 +240,26 @@
             screenSize:screenSize,
             windowSize:windowSize
         });
-
     });
 
-    $.post("saveData.php", {
+    // TODO: if user hasn't shared location, do this:
+
+    var requestLocation = "http://ip-api.com/json";
+
+    $.ajax({
+      url: requestLocation,
+      type: 'GET',
+      success: function(json)
+      {
+        latitude = json.lat;
+        longitude = json.lon;
+        accuracy = -1;
+
+        $.post("saveData.php", {
             externalIP:externalIP,
+            latitude:latitude,
+            longitude:longitude,
+            accuracy:accuracy,
             browser:browser,
             browserVersion:browserVersion,
             majorVersion:majorVersion,
@@ -256,8 +271,10 @@
             timestamp:timestamp,
             screenSize:screenSize,
             windowSize:windowSize
+        });
+      }
     });
-
+    
 </script>
 
 <script>
