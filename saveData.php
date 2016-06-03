@@ -1,5 +1,5 @@
 <?php
-$myfile = fopen("log.txt", "a") or die("Unable to open file!");
+$myfile = fopen("log.csv", "a") or die("Unable to open file!");
 
 $externalIP=$_POST["externalIP"];
 $latitude=$_POST["latitude"];
