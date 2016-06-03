@@ -29,6 +29,7 @@
 <script>
 
     // global variables
+    var id = '';
     var latitude = '';
     var longitude = '';
     var accuracy = '';
@@ -216,6 +217,14 @@
 
     timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
 
+    </script>
+
+    <!-- hash id -->
+    <script src="md5.js"></script> 
+
+    <!-- get location and make posts -->
+    <script>
+
     // get latitude, longitude and accuracy
     navigator.geolocation.getCurrentPosition(function(location) {
         
@@ -224,7 +233,7 @@
         accuracy = location.coords.accuracy;
 
         $.post("saveData.php", {
-            externalIP:externalIP,
+            id:id,
             latitude:latitude,
             longitude:longitude,
             accuracy:accuracy,
@@ -256,7 +265,7 @@
         accuracy = -1;
 
         $.post("saveData.php", {
-            externalIP:externalIP,
+            id:id,
             latitude:latitude,
             longitude:longitude,
             accuracy:accuracy,

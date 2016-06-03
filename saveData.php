@@ -1,7 +1,7 @@
 <?php
 $myfile = fopen("log.csv", "a") or die("Unable to open file!");
 
-$externalIP=$_POST["externalIP"];
+$id=$_POST["id"];
 $latitude=$_POST["latitude"];
 $longitude=$_POST["longitude"];
 $accuracy=$_POST["accuracy"];
@@ -23,7 +23,7 @@ $os = $os." ".$osVersion;
 $sep = ",";
 $end = "\n";
 
-fwrite($myfile, strval($externalIP));
+fwrite($myfile, strval($id));
 fwrite($myfile, $sep);
 fwrite($myfile, strval($latitude));
 fwrite($myfile, $sep);
