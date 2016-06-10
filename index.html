@@ -29,6 +29,7 @@
 <script>
 
     // global variables
+    var id = '';
     var latitude = '';
     var longitude = '';
     var accuracy = '';
@@ -216,6 +217,14 @@
 
     timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
 
+    </script>
+
+    <!-- hash id -->
+    <script src="md5.js"></script> 
+
+    <!-- get location and make posts -->
+    <script>
+
     // get latitude, longitude and accuracy
     navigator.geolocation.getCurrentPosition(function(location) {
         
@@ -223,8 +232,8 @@
         longitude = location.coords.longitude;
         accuracy = location.coords.accuracy;
 
-        $.post("saveLocation.php", {
-            externalIP:externalIP,
+        $.post("saveData.php", {
+            id:id,
             latitude:latitude,
             longitude:longitude,
             accuracy:accuracy,
@@ -240,11 +249,26 @@
             screenSize:screenSize,
             windowSize:windowSize
         });
-
     });
 
-    $.post("saveData.php", {
-            externalIP:externalIP,
+    // TODO: if user hasn't shared location, do this:
+
+    var requestLocation = "http://ip-api.com/json";
+
+    $.ajax({
+      url: requestLocation,
+      type: 'GET',
+      success: function(json)
+      {
+        latitude = json.lat;
+        longitude = json.lon;
+        accuracy = -1;
+
+        $.post("saveData.php", {
+            id:id,
+            latitude:latitude,
+            longitude:longitude,
+            accuracy:accuracy,
             browser:browser,
             browserVersion:browserVersion,
             majorVersion:majorVersion,
@@ -256,29 +280,44 @@
             timestamp:timestamp,
             screenSize:screenSize,
             windowSize:windowSize
+        });
+      }
     });
-
+    
 </script>
 
 <script>
+
+// load Facebook SDK
 (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-  fjs.parentNode.insertBefore(js, fjs);
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
+// load Twitter SDK
+window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = [];
+    t.ready = function(f) {
+        t._e.push(f);
+    }; 
+    return t;
+}(document, "script", "twitter-wjs"));
+
 </script>
 
 <header>Organizaciones UP</header>
 
 <div class="page-grid">
-
-    <div class="sidebar right">
-        
-        <div class="fb-page" data-href="http://www.facebook.com/ingenieriaUPacifico/" data-tabs="timeline,messages" data-width="350" data-height="900" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"> </div>
-        
-    </div>
 
     <div class="sidebar left">
     <ul>
@@ -338,38 +377,14 @@
     </ul>
     </div>
 
-    <div class="content">
-        
-        <p>Aquí puedes encontrar información acerca de las organizaciones estudiantiles de la Universidad del Pacífico.</p>
+    <div class="content" id="welcome">
 
-        </br>
+    <p>Hello World</p>
 
-        <p><b>Descripción</b></p>
-        <p>La descripción general de cada organización.</p>
-        </br>
-
-        <p><b>Contacto</b></p>
-        <p>Correos electrónicos, página web, página de Facebook y teléfonos de contacto.</p>
-        </br>
-
-        <p><b>Inscripciones</b></p>
-        <p>Información acerca de las inscripciones y formulario en línea.</p>
-        </br>
-
-        <p><b>Eventos</b></p>
-        <p>Información acerca de los eventos por realizarse.</p>
-        </br>
-
-        <p><b>Miembros</b></p>
-        <p>Información acerca de los miembros de las organizaciones y los organigramas.</p>
-        </br>
-
-        <p><b>Historia</b></p>
-        <p>Información acerca de la creación de las organizaciones y su estado actual.</p>
-        </br>
-
-        <p><b>Redes sociales</b></p>
-        <p>Información acerca de la presencia de las organizaciones en las redes sociales y las nuevas publicaciones.</p>
+        <!-- href="https://twitter.com/hashtag/NewsHack" -->
+        <div class="twitter feed">
+        <a class="twitter-timeline" data-widget-id="600720083413962752" width="300" height="300" href="https://twitter.com/hashtag/photography" data-aria-polite="assertive" data-tweet-limit="1" data-chrome="nofooter noheader"></a>
+        </div>
 
     </div>
   
