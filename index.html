@@ -1,432 +1,173 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" href="favicon.png">
-    <meta charset="UTF-8">
-    <title>Organizaciones UP</title>
-</head>
-<body>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-<!-- jQuery loading -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
 
-<!-- current page class formatting -->
-<script>
-    $(function() {
-      $('a').each(function() {
-        if ($(this).prop('href') == window.location.href) {
-          $(this).addClass('current');
-        }
-      });
-    });
-</script>
+  </head>
 
-<!-- get external IP -->
-<script src="http://l2.io/ip.js?var=externalIP"></script>
+  <body>
+  <header>
+    <nav>
+      <div class="nav-wrapper teal lighten-2">
+        <a href="#" class="brand-logo center">ORGANIZACIONES UNIVERSIDAD DEL PACÍFICO</a>
+      </div>
+    </nav>
 
-<!-- data collection scripts -->
-<script>
+  </header>
 
-    // global variables
-    var id = '';
-    var latitude = '';
-    var longitude = '';
-    var accuracy = '';
-    var browser = '';
-    var browserVersion = '';
-    var majorVersion = '';
-    var mobile = '';
-    var os = '';
-    var osVersion = '';
-    var cookieEnabled = '';
-    var currentPage = '';
-    var timestamp = '';
-    var screenSize = '';
-    var windowSize = '';
-    
-    (function (window) {{
-        
-        // get screen size
-        if (screen.width) {
-            var width = (screen.width) ? screen.width : '';
-            var height = (screen.height) ? screen.height : '';
-            screenSize += '' + width + " x " + height;
-        }
+  <div class="row">
 
-        // get browser, browserVersion and majorVersion
-        var nVer = navigator.appVersion;
-        var nAgt = navigator.userAgent;
-        browser = navigator.appName;
-        browserVersion = '' + parseFloat(navigator.appVersion);
-        majorVersion = parseInt(navigator.appVersion, 10);
-        var nameOffset, verOffset, ix;
+    <div class="col s3">
+      <div class="collection">
 
-        if ((verOffset = nAgt.indexOf('Opera')) != -1) {
-            browser = 'Opera';
-            browserVersion = nAgt.substring(verOffset + 6);
-            if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                browserVersion = nAgt.substring(verOffset + 8);
-            }
-        }
+        <a href="index.html" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> INICIO</span>
+        </a>
 
-        if ((verOffset = nAgt.indexOf('OPR')) != -1) {
-            browser = 'Opera';
-            browserVersion = nAgt.substring(verOffset + 4);
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Acción Universitaria</span>
+        </a>
 
-        else if ((verOffset = nAgt.indexOf('MSIE')) != -1) {
-            browser = 'Microsoft Internet Explorer';
-            browserVersion = nAgt.substring(verOffset + 5);
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Boceto</span>
+        </a>
 
-        else if ((verOffset = nAgt.indexOf('Chrome')) != -1) {
-            browser = 'Chrome';
-            browserVersion = nAgt.substring(verOffset + 7);
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Brigada UP</span>
+        </a>
 
-        else if ((verOffset = nAgt.indexOf('Safari')) != -1) {
-            browser = 'Safari';
-            browserVersion = nAgt.substring(verOffset + 7);
-            if ((verOffset = nAgt.indexOf('Version')) != -1) {
-                browserVersion = nAgt.substring(verOffset + 8);
-            }
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title">CEUP</span>
+        </a>
 
-        else if ((verOffset = nAgt.indexOf('Firefox')) != -1) {
-            browser = 'Firefox';
-            browserVersion = nAgt.substring(verOffset + 8);
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Círculo de Debate</span>
+        </a>
 
-        else if (nAgt.indexOf('Trident/') != -1) {
-            browser = 'Microsoft Internet Explorer';
-            browserVersion = nAgt.substring(nAgt.indexOf('rv:') + 3);
-        }
+        <a href="club_fotografia.html" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Club de Fotografia</span>
+        </a>
 
-        else if ((nameOffset = nAgt.lastIndexOf(' ') + 1) < (verOffset = nAgt.lastIndexOf('/'))) {
-            browser = nAgt.substring(nameOffset, verOffset);
-            browserVersion = nAgt.substring(verOffset + 1);
-            if (browser.toLowerCase() == browser.toUpperCase()) {
-                browser = navigator.appName;
-            }
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> ECAI</span>
+        </a>
 
-        if ((ix = browserVersion.indexOf(';')) != -1) browserVersion = browserVersion.substring(0, ix);
-        if ((ix = browserVersion.indexOf(' ')) != -1) browserVersion = browserVersion.substring(0, ix);
-        if ((ix = browserVersion.indexOf(')')) != -1) browserVersion = browserVersion.substring(0, ix);
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Forseti</span>
+        </a>
 
-        majorVersion = parseInt('' + browserVersion, 10);
-        if (isNaN(majorVersion)) {
-            browserVersion = '' + parseFloat(navigator.appVersion);
-            majorVersion = parseInt(navigator.appVersion, 10);
-        }
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Peruvian Debate Society</span>
+        </a>
 
-        // get mobile
-        mobile = /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(nVer);
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> REUP</span>
+        </a>
 
-        // get cookieEnabled
-        cookieEnabled = (navigator.cookieEnabled) ? true : false;
-
-        if (typeof navigator.cookieEnabled == 'undefined' && !cookieEnabled) {
-            document.cookie = 'testcookie';
-            cookieEnabled = (document.cookie.indexOf('testcookie') != -1) ? true : false;
-        }
-
-        // get os and osVersion
-        var clientStrings = [
-            {s:'Windows 10', r:/(Windows 10.0|Windows NT 10.0)/},
-            {s:'Windows 8.1', r:/(Windows 8.1|Windows NT 6.3)/},
-            {s:'Windows 8', r:/(Windows 8|Windows NT 6.2)/},
-            {s:'Windows 7', r:/(Windows 7|Windows NT 6.1)/},
-            {s:'Windows Vista', r:/Windows NT 6.0/},
-            {s:'Windows Server 2003', r:/Windows NT 5.2/},
-            {s:'Windows XP', r:/(Windows NT 5.1|Windows XP)/},
-            {s:'Windows 2000', r:/(Windows NT 5.0|Windows 2000)/},
-            {s:'Windows ME', r:/(Win 9x 4.90|Windows ME)/},
-            {s:'Windows 98', r:/(Windows 98|Win98)/},
-            {s:'Windows 95', r:/(Windows 95|Win95|Windows_95)/},
-            {s:'Windows NT 4.0', r:/(Windows NT 4.0|WinNT4.0|WinNT|Windows NT)/},
-            {s:'Windows CE', r:/Windows CE/},
-            {s:'Windows 3.11', r:/Win16/},
-            {s:'Android', r:/Android/},
-            {s:'Open BSD', r:/OpenBSD/},
-            {s:'Sun OS', r:/SunOS/},
-            {s:'Linux', r:/(Linux|X11)/},
-            {s:'iOS', r:/(iPhone|iPad|iPod)/},
-            {s:'Mac OS X', r:/Mac OS X/},
-            {s:'Mac OS', r:/(MacPPC|MacIntel|Mac_PowerPC|Macintosh)/},
-            {s:'QNX', r:/QNX/},
-            {s:'UNIX', r:/UNIX/},
-            {s:'BeOS', r:/BeOS/},
-            {s:'OS/2', r:/OS\/2/},
-            {s:'Search Bot', r:/(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/}
-        ];
-
-        for (var id in clientStrings) {
-            var cs = clientStrings[id];
-            if (cs.r.test(nAgt)) {
-                os = cs.s;
-                break;
-            }
-        }
-
-        if (/Windows/.test(os)) {
-            osVersion = /Windows (.*)/.exec(os)[1];
-            os = 'Windows';
-        }
-
-        switch (os) {
-            case 'Mac OS X':
-                osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
-                break;
-
-            case 'Android':
-                osVersion = /Android ([\.\_\d]+)/.exec(nAgt)[1];
-                break;
-
-            case 'iOS':
-                osVersion = /OS (\d+)_(\d+)_?(\d+)?/.exec(nVer);
-                osVersion = osVersion[1] + '.' + osVersion[2] + '.' + (osVersion[3] | 0);
-                break;
-        }
-    }
-
-    }(this));
-
-    // get windowSize
-    windowSize = window.innerWidth + ' x ' + window.innerHeight;
-
-    // get currentPage
-    currentPage = window.location.href;
-
-    // get timestamp
-    var now = new Date();
-    
-    var date = [ now.getMonth() + 1, now.getDate(), now.getFullYear() ];
-    var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
-    var suffix = ( time[0] < 12 ) ? "AM" : "PM";
-    
-    time[0] = ( time[0] < 12 ) ? time[0] : time[0] - 12;
-    time[0] = time[0] || 12;
-
-    for ( var i = 1; i < 3; i++ ) {
-        if ( time[i] < 10 ) {
-            time[i] = "0" + time[i];
-        }
-    }
-
-    timestamp = date.join("/") + " " + time.join(":") + " " + suffix;
-
-    </script>
-
-    <!-- hash id -->
-    <script src="md5.js"></script> 
-
-    <!-- get location and make posts -->
-    <script>
-
-    // get latitude, longitude and accuracy
-    navigator.geolocation.getCurrentPosition(function(location) {
-        
-        latitude = location.coords.latitude;
-        longitude = location.coords.longitude;
-        accuracy = location.coords.accuracy;
-
-        $.post("saveData.php", {
-            id:id,
-            latitude:latitude,
-            longitude:longitude,
-            accuracy:accuracy,
-            browser:browser,
-            browserVersion:browserVersion,
-            majorVersion:majorVersion,
-            mobile:mobile,
-            os:os,
-            osVersion:osVersion,
-            cookieEnabled:cookieEnabled,
-            currentPage:currentPage,
-            timestamp:timestamp,
-            screenSize:screenSize,
-            windowSize:windowSize
-        });
-    });
-
-    // TODO: if user hasn't shared location, do this:
-
-    var requestLocation = "http://ip-api.com/json";
-
-    $.ajax({
-      url: requestLocation,
-      type: 'GET',
-      success: function(json)
-      {
-        latitude = json.lat;
-        longitude = json.lon;
-        accuracy = -1;
-
-        $.post("saveData.php", {
-            id:id,
-            latitude:latitude,
-            longitude:longitude,
-            accuracy:accuracy,
-            browser:browser,
-            browserVersion:browserVersion,
-            majorVersion:majorVersion,
-            mobile:mobile,
-            os:os,
-            osVersion:osVersion,
-            cookieEnabled:cookieEnabled,
-            currentPage:currentPage,
-            timestamp:timestamp,
-            screenSize:screenSize,
-            windowSize:windowSize
-        });
-      }
-    });
-    
-</script>
-
-<script>
-
-// load Facebook SDK
-(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-// load Twitter SDK
-window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    t._e = [];
-    t.ready = function(f) {
-        t._e.push(f);
-    }; 
-    return t;
-}(document, "script", "twitter-wjs"));
-
-</script>
-
-<header>Organizaciones UP</header>
-
-<div class="page-grid">
-
-    <div class="sidebar left">
-    <ul>
-    
-        <li><a href="index.html">
-        <img class="icon" src="images/home.png">
-        Inicio
-        </a></li>
-
-        <div class="separator"></div>
-
-        <li><a href="aenu.html">
-        AENU Perú
-        </a></li>
-        
-        <li><a href="aiesec.html">
-        AIESEC
-        </a></li>
-
-        <li><a href="accion.html">
-        Acción Universitaria
-        </a></li>
-
-        <li><a href="boceto.html">
-        Boceto
-        </a></li>
-        
-        <li><a href="brigada.html">
-        Brigada UP
-        </a></li>
-
-        <li><a href="mcdonald.html">
-        Casa Ronald McDonald
-        </a></li>        
-
-        <li><a href="ceup.html">
-        CEUP
-        </a></li>
-        
-        <li><a href="cide.html">
-        Círculo de Debate
-        </a></li>
-        
-        <li><a href="cfup.html">
-        <img class="icon" src="images/cfup.png">
-        Club de Fotografía
-        </a></li>
-
-        <li><a href="crea.html">
-        CREA+
-        </a></li>
-        
-        <li><a href="ecai.html">
-        ECAI
-        </a></li>
-
-        <li><a href="espacio.html">
-        Espacio Mejor
-        </a></li>
-        
-        <li><a href="forseti.html">
-        Forseti
-        </a></li>
-
-        <li><a href="invierte.html">
-        InvierteUP
-        </a></li>
-
-        <li><a href="lmi.html">
-        LMI
-        </a></li>
-
-        <li><a href="lpir.html">
-        LPIR
-        </a></li>
-
-        <li><a href="minkando.html">
-        Minkando
-        </a></li>
-
-        <li><a href="chay.html">
-        Niñachay
-        </a></li>
-
-        <li><a href="proyectos.html">
-        Proyectos UP
-        </a></li>
-        
-        <li><a href="reup.html">
-        REUP
-        </a></li>
-
-        <li><a href="techo.html">
-        TECHO
-        </a></li>
-        
-        <li><a href="voz.html">
-        Voz Actual
-        </a></li>
-
-    </ul>
+        <a href="#!" class="collection-item  waves-effect waves-teal">
+          <img src="images/home.png " alt="" class="circle"> <!--20 pixels-->
+          <span class="title"> Voz Actual</span>
+        </a>
+       </div>
     </div>
 
-    <div class="content" id="welcome">
+    <div class="col s6">
 
-    <p>Hello World</p>
 
+        <div class="slider">
+           <ul class="slides">
+             <li>
+               <img src="http://cde.3.elcomercio.pe/ima/0/1/2/9/2/1292441.jpg"> <!-- random image -->
+               <div class="caption center-align">
+                 <h3>Universidad del Pacífico</h3>
+                 <h5 class="light grey-text text-lighten-3">Formando líderes responsables para el mundo.</h5>
+               </div>
+             </li>
+             <li>
+               <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+               <div class="caption left-align">
+                 <h3>Acción Universitaria</h3>
+                 <h5 class="light grey-text text-lighten-3">Espacio en el cual puedes expresar tu arte.</h5>
+               </div>
+             </li>
+             <li>
+               <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
+               <div class="caption right-align">
+                 <h3>Boceto</h3>
+                 <h5 class="light grey-text text-lighten-3">Revista de gran transcendencia.</h5>
+               </div>
+             </li>
+             <li>
+               <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
+               <div class="caption center-align">
+                 <h3>Brigada UP</h3>
+                 <h5 class="light grey-text text-lighten-3">Agrupación que tiene como finalidad la seguridad en la Universidad.</h5>
+               </div>
+             </li>
+           </ul>
+         </div>
     </div>
-  
-</div>
-</body>
+
+    <div class="col s3">
+      <div class="fb-page" data-href="http://www.facebook.com/ingenieriaUPacifico/" data-tabs="timeline,messages" data-width="350" data-height="570" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"> </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+      <footer class="page-footer card-panel teal lighten-2">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Mayor información sobre proyectos o sobre lo que hacemos</h5>
+            <a class="grey-text text-lighten-4" href="#!">Link de la página del startup (en proceso)</a>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Creado por:</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Javier Zárate</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Jose Naranjo</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Samantha Pacheco</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2016 Copyright Text
+        <a class="grey-text text-lighten-4 right" href="http://www.up.edu.pe/carreras-postgrado-idiomas/carreras-pregrado/ingenieriainformacion/Paginas/default.aspx">Ingenieros de la información</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+    <script src="js/colectar_data.js" type="text/javascript"></script>
+
+
+  </body>
 </html>
